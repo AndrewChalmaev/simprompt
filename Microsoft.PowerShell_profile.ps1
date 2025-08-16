@@ -17,20 +17,20 @@
 
 # 1. Greeting at the start of session
 $D=$(Get-Date)
-$V="$(pwsh --version)"
+$S="$(pwsh --version)"
 
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   $C="Green"
-  $W="$(uname -sr)"
+  $O="$(uname -sr)"
   $M="$(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')" + "M"
 } else {
   $C="Cyan"
-  $W="$(cmd /c ver)".Trim().Replace("[Version ","").Replace("]","")
+  $O="$(cmd /c ver)".Trim().Replace("[Version ","").Replace("]","")
   $M="$((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024)".Split('.')[0] + "M"
 }
 write-host "$D  " -ForegroundColor White -NoNewline
-write-host "$W  " -ForegroundColor $C -NoNewline
-write-host "$V  " -ForegroundColor Gray -NoNewline
+write-host "$O  " -ForegroundColor $C -NoNewline
+write-host "$S  " -ForegroundColor Gray -NoNewline
 write-host "$M" -ForegroundColor White
 
 # 2. Prompt
