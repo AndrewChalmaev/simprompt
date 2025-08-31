@@ -11,6 +11,9 @@ if status is-interactive
      (set_color White)"  🐟"$(fish --version | awk '{print $3}')\
      (set_color brWhite)"  "$(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')"M"
   end
+# Rust
+  source "$HOME/.cargo/env.fish"
+
 end
 
 # BEGIN opam configuration

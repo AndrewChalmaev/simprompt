@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/opt/microsoft/powershell/7/pwsh -NoLogo $@
