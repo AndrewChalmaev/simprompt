@@ -27,4 +27,4 @@ and add the following registry parameter (REG_SZ):
 
 /functions: fish shell functions (aliases)
 
-config.fish -- fish shell greeting string
+config.fish: fish shell greeting string
