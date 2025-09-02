@@ -25,6 +25,6 @@ and add the following registry parameter (REG_SZ):
 
   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 
-/functions:
--- fish shell functions (aliases)
--- fish shell greeting string
+/functions: fish shell functions (aliases)
+
+config.fish -- fish shell greeting string
