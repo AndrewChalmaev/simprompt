@@ -19,7 +19,7 @@ c:\Program Files\PowerShell\7\pwsh.bat containing:
 
   @echo off
   
-  "c:\Program Files\PowerShell\7\pwsh.exe" -NoLogo
+  "c:\Program Files\PowerShell\7\pwsh.exe" -NoLogo %*
 
 and add the following registry parameter (REG_SZ):
 
