@@ -1,4 +1,4 @@
-Simple coloured unix-like pwsh prompt v.0.92 (c)2025 andr.ch@gmail.com
+Simple coloured unix-like pwsh prompt v.0.93 (c)2025 andr.ch@gmail.com
 
 PowerShell should be run with -NoLogo parameter
 
@@ -28,3 +28,6 @@ and add the following registry parameter (REG_SZ):
 /functions: fish shell functions (aliases)
 
 config.fish: fish shell greeting string
+
+function up: on Linux: "sudo dnf up" or "sudo apt update -y && sudo apt upgrade && sudo apt autoremove"
+  on Windows: "sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot"
