@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.92 (c)2025 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.93 (c)2025 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -15,7 +15,18 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
-function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
+function up {
+  if ($([Environment]::OSVersion.Platform) -eq "Unix") {
+	if (which dnf) {
+	  sudo dnf up
+	} else {
+	  sudo apt update -y
+      sudo apt upgrade -y
+      sudo apt autoremove
+	}
+  } else {
+    sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
+  }
 
 # 1. Greeting at the start of session
 $D=$(Get-Date)
