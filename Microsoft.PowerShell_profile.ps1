@@ -27,7 +27,7 @@ function up {
   } else {
     sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
   }
-
+}
 # 1. Greeting at the start of session
 $D=$(Get-Date)
 $S="$(pwsh --version)"
