@@ -15,6 +15,7 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
+New-Alias -Name xs -Value Set-Clipboard
 function up {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     if (which dnf) {
