@@ -14,6 +14,8 @@
 # and add the following registry parameter (REG_SZ):
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
+# 0. Aliases
+function up { sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot }
 
 # 1. Greeting at the start of session
 $D=$(Get-Date)
@@ -53,7 +55,7 @@ function Global:prompt {
   write-host ">" -ForegroundColor White -NoNewline
   return " "
 }
-
 # Chocolatey profile
+#
 #$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 #if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
