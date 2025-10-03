@@ -15,7 +15,7 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
-function up { sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot }
+function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
 
 # 1. Greeting at the start of session
 $D=$(Get-Date)
