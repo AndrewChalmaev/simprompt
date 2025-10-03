@@ -32,4 +32,5 @@ config.fish: fish shell greeting string
 function up:
 
   on Linux: "sudo dnf up" or "sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
+
   on Windows: "sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot"
