@@ -29,6 +29,8 @@ and add the following registry parameter (REG_SZ):
 
 config.fish: fish shell greeting string
 
-function up: on Linux: "sudo dnf up" or "sudo apt update -y && sudo apt upgrade && sudo apt autoremove"
+function up:
 
-  on Windows: "sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot"
+  on Linux "sudo dnf up" or "sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
+
+  on Windows "sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot"
