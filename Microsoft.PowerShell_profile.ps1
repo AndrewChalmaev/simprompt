@@ -20,7 +20,7 @@ function up {
 	if (which dnf) {
 	  sudo dnf up
 	} else {
-	  sudo apt update -y
+      sudo apt update -y
       sudo apt upgrade -y
       sudo apt autoremove
 	}
