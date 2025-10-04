@@ -15,7 +15,10 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
+#New-Alias -Name control -Value systemsettings
 New-Alias -Name xs -Value Set-Clipboard
+function tb {nc termbin.com 9999 | xsel -b}
+function td {nmcli conn del $(nmcli conn show | grep Outline | awk '{ print $4 }')}
 function up {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     if (which dnf) {
@@ -29,6 +32,12 @@ function up {
     sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
   }
 }
+function vb {
+  sudo modprobe -r kvm_intel
+  sudo chown andrew:andrew /dev/sd*
+  ll /dev/sd*
+}
+#
 # 1. Greeting at the start of session
 $D=$(Get-Date)
 $S="$(pwsh --version)"
@@ -46,7 +55,7 @@ write-host "$D  " -ForegroundColor White -NoNewline
 write-host "$O  " -ForegroundColor $C -NoNewline
 write-host "$S  " -ForegroundColor Gray -NoNewline
 write-host "$M" -ForegroundColor White
-
+#
 # 2. Prompt
 function Global:prompt {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
@@ -67,6 +76,7 @@ function Global:prompt {
   write-host ">" -ForegroundColor White -NoNewline
   return " "
 }
+#
 # Chocolatey profile
 #
 #$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
