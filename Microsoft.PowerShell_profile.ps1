@@ -35,7 +35,8 @@ function up {
 function vb {
   sudo modprobe -r kvm_intel
   sudo chown andrew:andrew /dev/sd*
-  ll /dev/sd*
+  ls -l /dev/sd*
+  kstart VirtualBox $args
 }
 #
 # 1. Greeting at the start of session
