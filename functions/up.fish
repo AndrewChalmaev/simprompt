@@ -4,6 +4,6 @@ function up --description 'Update & upgrade'
   else
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt autoremove
+    sudo apt autoremove -y
   end
 end
