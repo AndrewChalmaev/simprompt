@@ -1,6 +1,6 @@
 function up --description 'Update & upgrade'
   if which dnf 1&>/dev/null
-    sudo dnf up -y
+    sudo dnf up --refresh -y
   else
     sudo apt update -y
     sudo apt upgrade -y
