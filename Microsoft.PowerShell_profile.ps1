@@ -22,7 +22,7 @@ function td {nmcli conn del $(nmcli conn show | grep Outline | awk '{ print $4 }
 function up {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     if (which dnf) {
-      sudo dnf up
+      sudo dnf up -y
     } else {
       sudo apt update -y
       sudo apt upgrade -y
