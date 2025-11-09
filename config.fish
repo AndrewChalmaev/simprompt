@@ -13,7 +13,7 @@ if status is-interactive
   end
 # Rust
   source "$HOME/.cargo/env.fish"
-
+  atuin init fish | source
 end
 
 # BEGIN opam configuration
