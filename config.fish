@@ -6,13 +6,15 @@ if status is-interactive
   export PAGER="/usr/bin/most"
 
   function fish_greeting
-    echo (set_color brWhite)$(date +'%a %b %d %Y %H:%M:%S %Z')\
-     (set_color brGreen)"  "$(uname -sr)\
-     (set_color White)"  🐟"$(fish --version | awk '{print $3}')\
-     (set_color brWhite)"  "$(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')"M"
+    echo -s (set_color brWhite)(date +'%a %b %d %Y %H:%M:%S %Z')\
+        (set_color brGreen)"  "(uname -sr)\
+        (set_color White)"  🐟"(fish --version | awk '{print $3}')\
+        (set_color brWhite)"  "(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')"M"
   end
+
 # Rust
   source "$HOME/.cargo/env.fish"
+
   atuin init fish --disable-up-arrow | source
 end
 

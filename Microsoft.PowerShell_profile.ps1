@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.93 (c)2025 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.94 (c)2025 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -18,7 +18,7 @@
 #New-Alias -Name control -Value systemsettings
 New-Alias -Name xs -Value Set-Clipboard
 function tb {nc termbin.com 9999 | xsel -b}
-function td {nmcli conn del $(nmcli conn show | grep Outline | awk '{ print $4 }')}
+function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
 function up {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     if (which dnf) {
@@ -45,12 +45,12 @@ $S="$(pwsh --version)"
 
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   $C="Green"
-  $O="$(uname -sr)"
-  $M="$(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')" + "M"
+  $O=(uname -sr)
+  $M=(free --mega | tail -n 2 | head -n 1 | awk '{print $7}') + "M"
 } else {
   $C="Cyan"
-  $O="$(cmd /c ver)".Trim().Replace("[Version ","").Replace("]","")
-  $M="$((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024)".Split('.')[0] + "M"
+  $O=(cmd /c ver).Trim().Replace("[Version ","").Replace("]","")
+  $M=((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024).Split('.')[0] + "M"
 }
 write-host "$D  " -ForegroundColor White -NoNewline
 write-host "$O  " -ForegroundColor $C -NoNewline
