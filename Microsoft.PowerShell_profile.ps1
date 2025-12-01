@@ -40,8 +40,8 @@ function vb {
 }
 #
 # 1. Greeting at the start of session
-$D=$(Get-Date)
-$S="$(pwsh --version)"
+$D=(Get-Date)
+$S=(pwsh --version)
 
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   $C="Green"
@@ -50,9 +50,9 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 } else {
   $C="Cyan"
   $O=(cmd /c ver).Trim().Replace("[Version ","").Replace("]","")
-  $M=((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024).Split('.')[0] + "M"
+  $M="$(((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024))".Split('.')[0] + "M"
 }
-write-host "$D  " -ForegroundColor White -NoNewline
+write-host "$D " -ForegroundColor White -NoNewline
 write-host "$O  " -ForegroundColor $C -NoNewline
 write-host "$S  " -ForegroundColor Gray -NoNewline
 write-host "$M" -ForegroundColor White
@@ -80,5 +80,5 @@ function Global:prompt {
 #
 # Chocolatey profile
 #
-#$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-#if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
