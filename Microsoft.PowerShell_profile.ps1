@@ -46,16 +46,16 @@ $S=(pwsh --version)
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   $C="Green"
   $O=(uname -sr)
-  $M=(free --mega | tail -n 2 | head -n 1 | awk '{print $7}') + "M"
+  $M=(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')
 } else {
   $C="Cyan"
-  $O=(cmd /c ver).Trim().Replace("[Version ","").Replace("]","")
-  $M="$(((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024))".Split('.')[0] + "M"
+  $O="$(cmd /c ver)".Trim().Replace("[Version ","").Replace("]","")
+  $M="$(((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024))".Split('.')[0]
 }
-write-host "$D " -ForegroundColor White -NoNewline
-write-host "$O  " -ForegroundColor $C -NoNewline
-write-host "$S  " -ForegroundColor Gray -NoNewline
-write-host "$M" -ForegroundColor White
+write-host $D"  " -ForegroundColor White -NoNewline
+write-host $O"  " -ForegroundColor $C -NoNewline
+write-host $S"  " -ForegroundColor Gray -NoNewline
+write-host $M"M" -ForegroundColor White
 #
 # 2. Prompt
 function Global:prompt {
@@ -71,7 +71,7 @@ function Global:prompt {
     $N=$Env:COMPUTERNAME
     $H=$Env:HOMEDRIVE+$Env:HOMEPATH
   }
-  write-host "$U" -ForegroundColor $C -NoNewline
+  write-host $U -ForegroundColor $C -NoNewline
   write-host "@$N " -ForegroundColor White -NoNewline
   write-host "$PWD".Replace($H,"~") -ForegroundColor Green -NoNewline
   write-host ">" -ForegroundColor White -NoNewline
