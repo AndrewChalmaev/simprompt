@@ -18,7 +18,7 @@
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   New-Alias -Name control -Value systemsettings
   function ping {
-    grc ping $argv
+    grc ping $args
   }
   function tb {nc termbin.com 9999 | xsel -b}
   function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
