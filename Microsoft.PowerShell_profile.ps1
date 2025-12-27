@@ -15,12 +15,14 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
-#New-Alias -Name control -Value systemsettings
-New-Alias -Name xs -Value Set-Clipboard
-function tb {nc termbin.com 9999 | xsel -b}
-function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
-function up {
-  if ($([Environment]::OSVersion.Platform) -eq "Unix") {
+if ($([Environment]::OSVersion.Platform) -eq "Unix") {
+  New-Alias -Name control -Value systemsettings
+  function ping {
+    grc ping $argv
+  }
+  function tb {nc termbin.com 9999 | xsel -b}
+  function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
+  function up {
     if (which dnf) {
       sudo dnf up --refresh -y
     } else {
@@ -28,15 +30,16 @@ function up {
       sudo apt upgrade -y
       sudo apt autoremove -y
     }
-  } else {
-    sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
   }
-}
-function vb {
-  sudo modprobe -r kvm_intel
-  sudo chown andrew:andrew /dev/sd*
-  ls -l /dev/sd*
-  kstart VirtualBox $args
+  function vb {
+    sudo modprobe -r kvm_intel
+    sudo chown andrew:andrew /dev/sd*
+    ls -l /dev/sd*
+    kstart VirtualBox $args}
+  function xs {xsel -b}
+} else {
+  function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
+  New-Alias -Name xs -Value Set-Clipboard
 }
 #
 # 1. Greeting at the start of session
@@ -80,7 +83,7 @@ function Global:prompt {
 #
 # Chocolatey profile
 #
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
+#$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+#if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
 
 atuin init powershell --disable-up-arrow | Out-String | Invoke-Expression
