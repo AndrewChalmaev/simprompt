@@ -38,7 +38,12 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   function xs {xsel -b}
 } else {
 # Windows aliases
-  function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
+  function up {
+  #to do:
+  #scoop install gsudo
+  #Install-Module -Name PSWindowsUpdate -Force
+  #Import-Module PSWindowsUpdate
+  sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
 #
