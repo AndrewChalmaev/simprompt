@@ -15,6 +15,8 @@
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
 # 0. Aliases
+New-Alias -Name ll -Value Get-ChildItem
+New-Alias -Name s -Value Start-Process
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 # Linux aliases
   New-Alias -Name control -Value systemsettings
@@ -39,8 +41,6 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 } else {
 # Windows aliases
   New-Alias -Name df -Value Get-PSDrive
-  New-Alias -Name ll -Value Get-ChildItem
-  New-Alias -Name s -Value Start-Process
   function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
