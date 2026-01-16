@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.96 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.95 (c)2025 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -18,7 +18,6 @@
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 # Linux aliases
   New-Alias -Name control -Value systemsettings
-  function ll {ls -lh --group-directories-first $args}
   function ping {grc ping $args}
   function tb {nc termbin.com 9999 | xsel -b}
   function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
@@ -39,12 +38,10 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
   function xs {xsel -b}
 } else {
 # Windows aliases
-  function up {
-  #to do:
-  #scoop install gsudo
-  #Install-Module -Name PSWindowsUpdate -Force
-  #Import-Module PSWindowsUpdate
-  sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
+  New-Alias -Name df -Value Get-PSDrive
+  New-Alias -Name ll -Value Get-ChildItem
+  New-Alias -Name s -Value Start-Process
+  function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
 #
