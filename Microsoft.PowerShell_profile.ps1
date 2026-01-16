@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.95 (c)2025 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.97 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -34,7 +34,7 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     sudo modprobe -r kvm_intel
     sudo chown andrew:andrew /dev/sd*
     ls -l /dev/sd*
-    kstart VirtualBox $args}
+    kstart VirtualBox $args 2>/dev/null}
   function xs {xsel -b}
 } else {
 # Windows aliases
