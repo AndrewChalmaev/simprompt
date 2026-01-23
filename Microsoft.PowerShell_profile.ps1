@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.97 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.98 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -14,10 +14,20 @@
 # and add the following registry parameter (REG_SZ):
 #   HKEY_LOCAL_MACHINE\SOFTWARE\OpenSSH\DefaultShell=c:\Program Files\PowerShell\7\pwsh.bat
 #
+
+# Check if shell is interactive
+$non_interactive = '-command', '-c', '-encodedcommand', '-e', '-ec', '-file', '-f'
+if ([Environment]::GetCommandLineArgs() | Where-Object -FilterScript {$PSItem -in $non_interactive}) {
+# commands for non-interactive use
+  exit
+}
+
 # 0. Aliases
 New-Alias -Name ll -Value Get-ChildItem
 New-Alias -Name s -Value Start-Process
+
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
+
 # Linux aliases
   New-Alias -Name control -Value systemsettings
   function ping {grc ping $args}
@@ -39,12 +49,13 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
     kstart VirtualBox $args 2>/dev/null}
   function xs {xsel -b}
 } else {
+
 # Windows aliases
   New-Alias -Name df -Value Get-PSDrive
   function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
-#
+
 # 1. Greeting at the start of session
 $D=(Get-Date)
 $S=(pwsh --version)
@@ -62,7 +73,7 @@ write-host $D"  " -ForegroundColor White -NoNewline
 write-host $O"  " -ForegroundColor $C -NoNewline
 write-host $S"  " -ForegroundColor Gray -NoNewline
 write-host $M"M" -ForegroundColor White
-#
+
 # 2. Prompt
 function Global:prompt {
   if ($([Environment]::OSVersion.Platform) -eq "Unix") {
@@ -83,9 +94,8 @@ function Global:prompt {
   write-host ">" -ForegroundColor White -NoNewline
   return " "
 }
-#
+
 # Chocolatey profile
-#
 #$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 #if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
 
