@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.98 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.981 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
