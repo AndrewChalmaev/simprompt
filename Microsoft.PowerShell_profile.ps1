@@ -30,6 +30,7 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 
 # Linux aliases
   New-Alias -Name control -Value systemsettings
+  function cat {bat -p $args}
   function ping {grc ping $args}
   function tb {nc termbin.com 9999 | xsel -b}
   function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
