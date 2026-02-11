@@ -1,7 +1,8 @@
 if status is-interactive
   # Commands to run in interactive sessions can go here
 
-  set PATH "/opt:$HOME/bin:$HOME/.local/bin:$PATH"
+  set PATH "/opt:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+#  set PATH "/opt:$HOME/bin:$HOME/.local/bin:$PATH"
   export PATH
   export PAGER="/usr/bin/most"
 
