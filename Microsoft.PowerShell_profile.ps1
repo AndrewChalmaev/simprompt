@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.981 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.982 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -53,6 +53,8 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 
 # Windows aliases
   New-Alias -Name df -Value Get-PSDrive
+  Remove-Item Alias:ps
+  function ps {Get-Process -IncludeUserName}
   function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
@@ -100,4 +102,4 @@ function Global:prompt {
 #$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 #if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
 
-atuin init powershell --disable-up-arrow | Out-String | Invoke-Expression
+#atuin init powershell --disable-up-arrow | Out-String | Invoke-Expression
