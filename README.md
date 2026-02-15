@@ -1,4 +1,4 @@
-Simple coloured unix-like pwsh prompt v.0.981 (c)2026 andr.ch@gmail.com
+Simple coloured unix-like pwsh prompt v.0.983 (c)2026 andr.ch@gmail.com
 
 PowerShell should be run with -NoLogo parameter
 

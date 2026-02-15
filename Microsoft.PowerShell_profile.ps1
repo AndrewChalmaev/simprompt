@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.982 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.983 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -30,7 +30,7 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 
 # Linux aliases
   New-Alias -Name control -Value systemsettings
-  function cat {bat -p $args}
+  function cat {batcat -p $args}
   function ping {grc ping $args}
   function tb {nc termbin.com 9999 | xsel -b}
   function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
