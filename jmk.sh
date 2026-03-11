@@ -32,6 +32,8 @@ long=(
   $SRC_AV/Videos
   $SOURCE/Yandex.Disk
 )
+# pwsh
+# sudo New-Item -Path "C:\desk\" -ItemType SymbolicLink -Target "C:\Users\andrew\Desktop\"
 
 cd /
 for i in ${!short[*]}; do
