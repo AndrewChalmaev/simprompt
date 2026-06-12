@@ -5,11 +5,16 @@ if status is-interactive
 #  set PATH "/opt:$HOME/bin:$HOME/.local/bin:$PATH"
   export PATH
   export PAGER="/usr/bin/most"
+  if string match -q "linux" $TERM
+    set FISH "  fish "
+  else
+    set FISH "  🐟 "
+  end
 
   function fish_greeting
     echo -s (set_color brWhite)(date +'%a %b %d %Y %H:%M:%S %Z')\
         (set_color brGreen)"  "(uname -sr)\
-        (set_color White)"  🐟"(fish --version | awk '{print $3}')\
+        (set_color White)$FISH(fish --version | awk '{print $3}')\
         (set_color brWhite)"  "(free --mega | tail -n 2 | head -n 1 | awk '{print $7}')"M"
   end
 
