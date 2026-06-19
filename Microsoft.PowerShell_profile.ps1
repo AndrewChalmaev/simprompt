@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.985 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.986 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -23,13 +23,14 @@ if ([Environment]::GetCommandLineArgs() | Where-Object -FilterScript {$PSItem -i
 }
 
 # 0. Aliases
-New-Alias -Name ll -Value Get-ChildItem
-New-Alias -Name s -Value Start-Process
+New-Alias -Name   ll -Value Get-ChildItem
+New-Alias -Name   s  -Value Start-Process
 
 if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 
 # Linux aliases
   New-Alias -Name control -Value systemsettings
+  function        down      {shutdown now}
   function        ping      {grc ping $args}
   function        tb        {nc termbin.com 9999 | xsel -b}
   function        up        {if (which dnf) {sudo dnf up --refresh -y}
@@ -43,7 +44,7 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 # Windows aliases
   Remove-Item Alias:ps
   New-Alias -Name df -Value Get-PSDrive
-  function        down      {shutdown -h -t 0}
+  function        down      {shutdown -s -t 0}
   function        ps        {Get-Process -IncludeUserName}
   function        reboot    {shutdown -r -t 0}
   function        up        {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
