@@ -1,4 +1,4 @@
-# Simple coloured unix-like pwsh prompt v.0.983 (c)2026 andr.ch@gmail.com
+# Simple coloured unix-like pwsh prompt v.0.985 (c)2026 andr.ch@gmail.com
 #
 # PowerShell should be run with -NoLogo parameter
 # Linux: remove original link /bin/pwsh, create the script /bin/pwsh containing:
@@ -30,31 +30,23 @@ if ($([Environment]::OSVersion.Platform) -eq "Unix") {
 
 # Linux aliases
   New-Alias -Name control -Value systemsettings
-  function ping {grc ping $args}
-  function tb {nc termbin.com 9999 | xsel -b}
-  function td {nmcli conn del $(nmcli conn show | grep [Oo]utline | awk '{print $4}')}
-  function up {
-    if (which dnf) {
-      sudo dnf up --refresh -y
-    } else {
-      sudo apt update -y
-      sudo apt upgrade -y
-      sudo apt autoremove -y
-    }
-  }
-  function vb {
-    sudo modprobe -r kvm_intel
-    sudo chown andrew:andrew /dev/sd*
-    ls -l /dev/sd*
-    kstart VirtualBox $args 2>/dev/null}
-  function xs {xsel -b}
+  function        ping      {grc ping $args}
+  function        tb        {nc termbin.com 9999 | xsel -b}
+  function        up        {if (which dnf) {sudo dnf up --refresh -y}
+                            else {sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y}}
+  function        vb        {sudo chown andrew:andrew /dev/sd*
+                            ls -l /dev/sd*
+                            kstart VirtualBox $args 2>/dev/null}
+  function        xs        {xsel -b}
 } else {
 
 # Windows aliases
-  New-Alias -Name df -Value Get-PSDrive
   Remove-Item Alias:ps
-  function ps {Get-Process -IncludeUserName}
-  function up {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
+  New-Alias -Name df -Value Get-PSDrive
+  function        down      {shutdown -h -t 0}
+  function        ps        {Get-Process -IncludeUserName}
+  function        reboot    {shutdown -r -t 0}
+  function        up        {sudo get-WindowsUpdate -AcceptAll -Install -IgnoreReboot}
   New-Alias -Name xs -Value Set-Clipboard
 }
 
