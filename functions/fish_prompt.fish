@@ -1,7 +1,7 @@
 # name: Default
 # author: Lily Ballard
 #
-# modified (c) 2025 andr.ch@gmail.com
+# modified (c) 2026 andr.ch@gmail.com
 
 function fish_prompt --description 'Write out the prompt'
     set -l last_pipestatus $pipestatus
@@ -32,6 +32,6 @@ function fish_prompt --description 'Write out the prompt'
     set -l statusb_color (set_color $bold_flag $fish_color_status)
     set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
-# error status is displayed in the beginning of prompt
-    echo -n -s $prompt_status" " (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal $suffix " "
+# error status is displayed (if not 0) in the line before prompt
+    echo -n -s -e $prompt_status'\n' (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal $suffix " "
 end
